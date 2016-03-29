@@ -23,10 +23,10 @@ public class ResultTextController : MonoBehaviour {
 
 	void Update () {
 		for (int i = 0; i < redZ.Length; i++){
-			if(redZ[i].GetComponent<ZoneController> ().gameOverText != ""){
-				GOT = redZ[i].GetComponent<ZoneController> ().gameOverText;
+			GOT = redZ[i].GetComponent<ZoneController> ().gameOverText;
+			if(GOT != ""){
 				GetComponent <TextMesh>().text = GOT;
-				pc.ballSpeed = 0.0f;
+				pc.setAllToZero();
 			}
 		}
 		if(greenZ.GetComponent<ZoneController> ().gameOverText != ""){
@@ -34,14 +34,17 @@ public class ResultTextController : MonoBehaviour {
 			t.position = new Vector3 (t.position.x + move, t.position.y, t.position.z);
 			move = 0;
 			GetComponent <TextMesh>().text = GOT;
-			pc.ballSpeed = 0.0f;
+			//pc.ballSpeed = 0.0f;
+			pc.setAllToZero();
 		}
-		if(GOT != ""){
-			if(Input.GetKeyDown(KeyCode.R)){
-				SceneManager.LoadScene ("MainScene");
-			} else if(Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Escape)){
-				Application.Quit();
-			}
+		KeyPress ();
+	}
+
+	void KeyPress(){
+		if(Input.GetKeyDown(KeyCode.R)){
+			SceneManager.LoadScene ("MainScene");
+		} else if(Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Escape)){
+			Application.Quit();
 		}
 	}
 }
