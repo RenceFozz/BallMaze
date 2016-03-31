@@ -2,5 +2,5 @@
 
 ### Controls:
 
-R - Restart 
+R - Restart    
 Arrow Keys - Ball Movement
